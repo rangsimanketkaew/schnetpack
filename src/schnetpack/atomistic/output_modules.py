@@ -184,7 +184,7 @@ class Atomwise(nn.Module):
                 1,
             )
             result["alternative_stress"] = alternative_stress / volume
-            print(result[alternative_stress] - result[self.stress])
+            print(result["alternative_stress"] - result[self.stress])
             exit()
 
         return result
