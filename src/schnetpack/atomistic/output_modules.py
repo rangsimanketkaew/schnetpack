@@ -178,6 +178,15 @@ class Atomwise(nn.Module):
             # Finalize stress tensor
             result[self.stress] = stress / volume
 
+            alternative_stress = torch.sum(
+                inputs[Properties.R][:, :, None, :]
+                * result[self.derivative][:, :, :, None],
+                1,
+            )
+            result["alternative_stress"] = alternative_stress / volume
+            print(result[alternative_stress] - result[self.stress])
+            exit()
+
         return result
 
 
